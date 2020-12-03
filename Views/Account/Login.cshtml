@@ -1,0 +1,32 @@
+﻿@model coreWeb31.ViewModels.LoginViewModel;
+@{
+    ViewData["Title"] = "登入頁";
+}
+
+<div style="width: 100%; max-width: 330px; padding: 15px; margin: auto;" class="text-center">
+    <h1>練習系統登入</h1>
+    <form asp-action="Login" method="post" asp-route-ReturnUrl="@Context.Request.Query["ReturnUrl"]" id="LoginForm">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="請輸入帳號" asp-for="Account">
+            <span asp-validation-for="Account" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="請輸入密碼" asp-for="Password">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </form>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" id="UserLogin">登入</button>
+        <a class="btn btn-primary" asp-action="GoogleLogin" asp-route-ReturnUrl="@Context.Request.Query["ReturnUrl"]">Google 登入</a>
+    </div>
+
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/Login.js"></script>
+}
